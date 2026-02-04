@@ -1,0 +1,744 @@
+/* ======================================================
+   GLOBAL RESET & SETTING (SEMUA HALAMAN)
+====================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f8f9f7;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section {
+  padding: 60px 0;
+}
+
+.section.light {
+  background: #f2f4f1;
+}
+
+.center {
+  text-align: center;
+}
+
+/* ======================================================
+   NAVBAR (GLOBAL)
+====================================================== */
+.navbar {
+  background: #936108; /* hijau tua navbar */
+  color: #fff;
+  padding: 15px 0;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+nav a.active {
+  border-bottom: 2px solid #e0b973;
+}
+
+/* ======================================================
+   HERO – HALAMAN INDEX / BERANDA
+====================================================== */
+.hero {
+  background: #1f6b4f; /* hitam background hero */
+  color: #fff;
+  padding: 80px 0;
+}
+
+.hero h1 {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 700px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  color: #eaeaea;
+}
+
+/* ===== ITEM / KOTAK DI DALAM HERO ===== */
+.hero-cards {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.hero .card {
+  background: #fff; /* hijau beda dari navbar */
+  color: #000;      /* ga penting */
+  padding: 22px;
+  border-radius: 14px;
+  flex: 1;
+  transition: 0.3s ease;
+}
+
+.hero .card h4 {
+  color: #000; /*teks di kotak hero*/
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.hero .card p {
+  color: #000; /* teks di kotak hero */
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* efek hover biar hidup */
+.hero .card:hover {
+  background: #9ff0d4;
+  transform: translateY(-4px);
+}
+
+
+/* ======================================================
+   PAKET (DIGUNAKAN DI BERANDA 'index')
+====================================================== */
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* ======================================================
+   PAKET (DIGUNAKAN DI BERANDA 'index')
+   [PERBAIKAN] SEMUA KOTAK PAKET PUNYA GARIS
+====================================================== */
+.package-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+
+  /* TAMBAHAN */
+  border: 2px solid #0f3d2e;
+}
+
+
+.package-card button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: #0f3d2e;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* ======================================================
+   BERANDA – BERITA TERKINI (HIGHLIGHT)
+====================================================== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.section-header h2 {
+  font-size: 28px;
+  color: #0f3d2e;
+}
+
+.section-header a {
+  font-weight: 500;
+  color: #0f3d2e;
+}
+
+/* layout kiri besar – kanan list */
+.news-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+}
+
+/* berita utama */
+.news-main {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.news-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  color: #fff;
+}
+
+.news-overlay h3 {
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+/* berita samping */
+.news-side {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.news-card {
+  background: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.news-card h4 {
+  font-size: 15px;
+  margin: 8px 0;
+  color: #0f3d2e;
+}
+
+.news-card p {
+  font-size: 13px;
+  color: #777;
+}
+
+/* ================= MODAL BERITA ================= */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  animation: zoom 0.3s ease;
+}
+
+@keyframes zoom {
+  from { transform: scale(0.8); }
+  to { transform: scale(1); }
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 22px;
+  background: #0f3d2e;
+  color: #fff;
+  border-radius: 25px;
+}
+
+/* === ANIMASI HOVER BERITA TERKINI === */
+.news-main,
+.news-card {
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.news-main:hover,
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+
+/* ======================================================
+   BERANDA – JUDUL BERITA LAINNYA
+====================================================== */
+.berita-lain-header {
+  margin: 60px 0 30px;
+  text-align: center;
+}
+
+.berita-lain-header h3 {
+  font-size: 26px;
+  color: #0f3d2e;
+  margin-bottom: 8px;
+}
+
+.berita-lain-header p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* ======================================================
+   NAVBAR – DROPDOWN PANDUAN
+====================================================== */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 160px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 99;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 16px;
+  color: #0f3d2e;
+  font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+  background: #f2f4f1;
+}
+
+/* ======================================================
+   NAVBAR – DROPDOWN PANDUAN (KLIK)
+====================================================== */
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+
+
+/* ======================================================
+   HERO – HALAMAN PANDUAN
+====================================================== */
+.hero-panduan {
+  background: linear-gradient(
+    rgba(15, 61, 46, 0.9),
+    rgba(15, 61, 46, 0.9)
+  ),
+  url("../assets/images/panduan.jpg") center/cover;
+  color: #fff;
+  padding: 80px 0;
+}
+
+.hero-panduan h1 {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.hero-panduan p {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+/* ======================================================
+   HALAMAN PANDUAN – SYARAT & KETENTUAN
+====================================================== */
+.syarat-header h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #0f3d2e;
+}
+
+.syarat-header p {
+  max-width: 700px;
+  margin: auto;
+  color: #555;
+}
+
+/* grid 2 kolom (jadi rapi & seimbang) */
+.syarat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.syarat-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.syarat-card h4 {
+  color: #0f3d2e;
+  margin-bottom: 8px;
+}
+
+.syarat-card p {
+  line-height: 1.6;
+  color: #444;
+}
+
+
+/* ======================================================
+   HALAMAN PANDUAN – ALUR PENDAFTARAN (3 STEP)
+====================================================== */
+.alur-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.alur-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  position: relative;
+}
+
+.alur-box span {
+  display: inline-block;
+  background: #0f3d2e;
+  color: #fff;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 50%;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.alur-box h4 {
+  color: #0f3d2e;
+  margin-bottom: 10px;
+}
+
+.alur-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+
+
+/* ======================================================
+   FOOTER (GLOBAL)
+====================================================== */
+.footer {
+  background: #936108;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+
+/* ======================================================
+   HERO – HALAMAN KONTAK
+====================================================== */
+.hero-kontak {
+  background: linear-gradient(
+    rgba(15, 61, 46, 0.95),
+    rgba(15, 61, 46, 0.95)
+  );
+  padding: 90px 0;
+}
+
+.hero-kontak h1 {
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.hero-kontak p {
+  max-width: 700px;
+  margin: auto;
+  color: #eaeaea;
+}
+
+/* ======================================================
+   HALAMAN KONTAK – INFO KONTAK
+====================================================== */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.contact-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.contact-card .highlight {
+  color: #0f3d2e;
+  font-size: 26px;
+  margin: 10px 0;
+}
+
+/* ======================================================
+   HALAMAN KONTAK – LOKASI & FORM
+====================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.map-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.map-placeholder {
+  background: #e6e6e6;
+  height: 250px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-placeholder button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  background: #0f3d2e;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* ===== FORM PENGADUAN ===== */
+.form-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+}
+
+.form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-box input,
+.form-box select,
+.form-box textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-box textarea {
+  resize: none;
+  height: 100px;
+}
+
+.form-box button {
+  margin-top: 10px;
+  padding: 12px;
+  background: #0f3d2e;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* ======================================================
+   HALAMAN KONTAK – FAQ
+====================================================== */
+.faq-list {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.faq-item {
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.faq-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #0f3d2e;
+  font-weight: 500;
+}
+
+
+/* ======================================================
+   HALAMAN BERITA LAINNYA di Beranda– HERO
+====================================================== */
+.hero-berita {
+  background: #1f6b4f;
+  color: #fff;
+  padding: 80px 0;
+}
+
+.hero-berita-content {
+  max-width: 800px;
+  margin: auto;
+}
+
+.hero-berita h1 {
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.hero-berita p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #eaeaea;
+}
+
+/* ======================================================
+   HALAMAN BERITA – LIST / CARD BERITA
+====================================================== */
+.berita-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.berita-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.berita-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== GAMBAR BERITA ===== */
+.berita-image {
+  position: relative;
+  height: 180px;
+}
+
+.berita-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.berita-image .badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+/* ===== KONTEN BERITA ===== */
+.berita-content {
+  padding: 20px;
+}
+
+.berita-content h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #0f3d2e;
+}
+
+.berita-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* ======================================================
+   HALAMAN DETAIL BERITA
+====================================================== */
+.berita-detail {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+}
+
+.berita-detail h2 {
+  color: #0f3d2e;
+  margin-bottom: 10px;
+}
+
+.berita-meta {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.berita-detail-content p {
+  line-height: 1.8;
+  font-size: 15px;
+  color: #444;
+}
+
+/* ======================================================
+   MODAL BERITA – GAMBAR
+====================================================== */
+.modal-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
