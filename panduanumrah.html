@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Detail Paket Haji</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <title>Panduan Ibadah Umrah | Nuansa Gurun</title>
+  <link rel="stylesheet" href="css/style.css" />
   <script src="js/script.js" defer></script>
 </head>
 <body>
@@ -19,64 +19,86 @@
         <span>Republik Indonesia</span>
       </div>
     </div>
-
-
+    
     <nav>
-      <a href="index.html">Beranda</a>
+      <a href="index.html" class="active">Beranda</a>
       <!-- DROPDOWN PANDUAN (KLIK) -->
-       <div class="nav-dropdown">
-        <a href="#" id="btnPanduan">Panduan ▾</a>
-        <div class="dropdown-menu" id="menuPanduan">
-          <a href="panduanhaji.html">Panduan Haji</a>
-          <a href="panduanumrah.html">Panduan Umrah</a>
+  <div class="nav-dropdown">
+    <a href="#" id="btnPanduan">Panduan ▾</a>
+    <div class="dropdown-menu" id="menuPanduan">
+      <a href="panduanhaji.html">Panduan Haji</a>
+      <a href="panduanumrah.html">Panduan Umrah</a>
     </div>
   </div>
-      <!-- NAVBAR SCROLL -->
+  <!-- NAVBAR SCROLL -->
   <a href="index.html#berita">Berita</a>
   <a href="index.html#paket">Paket</a>
   <a href="kontak.html">Kontak</a>
-    </nav>
+</nav>
   </div>
 </header>
 
-<section class="hero hero-berita center">
-  <div class="container">
-    <h1 id="paketJudul"></h1>
-    <p>Informasi detail paket haji</p>
+<section class="hero-panduan">
+  <div class="container center">
+    <h1>Panduan Lengkap Alur & Pendaftaran Umrah</h1>
+    <p>
+      Informasi resmi seputar persyaratan, alur pendaftaran,
+      dan prosedur ibadah umrah sesuai ketentuan pemerintah.
+    </p>
   </div>
 </section>
 
-<section class="section">
+<!-- ================= VIDEO PANDUAN UMRAH ================= -->
+<section class="panduan-video-section">
+
   <div class="container">
 
-    <div class="paket-detail-box">
+    <div class="panduan-video-box">
 
-      <!-- GAMBAR -->
-      <div class="paket-detail-image">
-        <img id="paketImage" src="" alt="Gambar Paket">
-      </div>
-
-      <!-- INFO -->
-      <div class="paket-detail-info">
-        <h2 id="paketJudul"></h2>
-
-        <p id="paketDeskripsi"></p>
-
-        <h4>Fasilitas:</h4>
-        <ul id="listFasilitas"></ul>
-        <a href="https://wa.me/6281234567890"
-        target="_blank"
-        class="btn-paket-wa">
-        Daftar / Hubungi WhatsApp Kami
-      </a>
-        
-      </div>
+      <iframe
+        id="iframeUmrah"
+        src=""
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
 
     </div>
 
   </div>
+
 </section>
 
+<section class="section light">
+  <div class="container">
+    <div class="syarat-header center">
+      <h2>Syarat & Ketentuan Umrah</h2>
+      <p>Pastikan seluruh persyaratan berikut dipenuhi sebelum keberangkatan.</p>
+    </div>
+
+    <div class="syarat-grid">
+      <div class="syarat-card">
+        <h4>Dokumen Pribadi</h4>
+        <p>Paspor aktif minimal 6 bulan dan KTP.</p>
+      </div>
+
+      <div class="syarat-card">
+        <h4>Visa Umrah</h4>
+        <p>Visa umrah resmi yang diproses oleh PPIU terdaftar.</p>
+      </div>
+
+      <div class="syarat-card">
+        <h4>Kesehatan</h4>
+        <p>Vaksin meningitis & pemeriksaan kesehatan.</p>
+      </div>
+
+      <div class="syarat-card">
+        <h4>Biaya Paket</h4>
+        <p>Pembayaran sesuai paket umrah yang dipilih.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -142,6 +164,7 @@
   </div>
 
 </footer>
+
 
 </body>
 </html>

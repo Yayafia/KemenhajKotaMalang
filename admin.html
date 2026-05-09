@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | SISKOHAT</title>
+    <!-- CSS UTAMA -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- SCRIPT UTAMA -->
+    <script src="js/admin.js" defer></script>
+</head>
+<body class="admin-body">
+
+<div class="admin-wrapper">
+<!-- ======================================================
+     SIDEBAR ADMIN
+====================================================== -->
+<!-- KETERANGAN:
+     data-target HARUS sama dengan id section
+===================================================== -->
+<aside class="admin-sidebar">
+    <div class="sidebar-header">
+        <h3>SISKOHAT ADMIN</h3>
+        <p class="sidebar-desc">
+            Sistem Informasi Haji & Umrah
+        </p>
+    </div>
+
+    <nav class="sidebar-nav">
+        <!-- DASHBOARD -->
+        <a href="#" class="nav-item active"
+           data-target="dash">
+           Dashboard</a>
+
+        <!-- BERITA -->
+        <a href="#" class="nav-item"
+           data-target="news">
+           Kelola Berita</a>
+
+        <!-- PAKET -->
+        <a href="#" class="nav-item"
+           data-target="reg">
+           Kelola Paket</a>
+
+        <!-- INFORMASI -->
+        <a href="#" class="nav-item"
+           data-target="msg">
+           Kelola Informasi</a>
+        <hr>
+
+        <!-- LOGOUT -->
+        <a href="index.html"
+           class="nav-item logout">Keluar</a>
+    </nav>
+</aside>
+
+<!-- ======================================================
+     MAIN ADMIN
+====================================================== -->
+<main class="admin-main">
+<!-- ======================================================
+     HEADER
+====================================================== -->
+<header class="admin-header">
+    <h2 id="admin-title">
+        Ringkasan Statistik
+    </h2>
+
+    <div class="user-profile">
+        <strong>
+            Admin Kota Malang
+        </strong>
+        <small>
+            Panel Pengelola Website
+        </small>
+    </div>
+</header>
+
+<!-- ======================================================
+     SECTION DASHBOARD
+====================================================== -->
+<!-- KETERANGAN:
+     id HARUS: section-dash
+-->
+<section id="section-dash"
+         class="admin-section active">
+    <div class="stats-grid">
+
+        <!-- TOTAL BERITA -->
+        <div class="stat-card">
+
+            <h4>Total Berita</h4>
+
+            <!-- ID dipakai script -->
+            <p class="stat-number"
+               id="totalBerita">0</p>
+        </div>
+
+
+        <!-- TOTAL PAKET -->
+        <div class="stat-card">
+
+            <h4>Total Paket</h4>
+
+            <p class="stat-number"
+               id="stat-paket">0</p>
+        </div>
+
+        <!-- TOTAL PESAN -->
+        <div class="stat-card">
+
+            <h4>Pesan Masuk</h4>
+
+            <p class="stat-number"
+               id="stat-msg">0</p>
+        </div>
+    </div>
+</section>
+
+<!-- ======================================================
+     SECTION BERITA
+====================================================== -->
+<!-- KETERANGAN:
+     id HARUS: section-news
+-->
+<section id="section-news"class="admin-section">
+    <!-- HEADER -->
+    <div class="section-header-admin">
+        <div>
+            <h3>Daftar Berita</h3>
+
+            <p class="section-desc">
+                Kelola berita terbaru website
+            </p>
+        </div>
+
+        <button class="btn-add"
+                onclick="openModal('adminModal')">
+            + Tambah Berita
+        </button>
+    </div>
+
+
+    <!-- TABLE BERITA -->
+    <!-- ID HARUS tableBerita -->
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>Gambar</th>
+            <th>Judul</th>
+            <th>Kategori</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody id="tableBerita"></tbody>
+    </table>
+
+    <!-- ======================================================
+         SAMBUTAN
+         (HARUS DI DALAM section-news)
+    ====================================================== -->
+    <div class="section-header-admin"
+         style="margin-top:40px;">
+        <div>
+            <h3>Kelola Sambutan Kepala</h3>
+            <p class="section-desc">
+                Sambutan kepala </p>
+        </div>
+        <button class="btn-add"
+                onclick="openSambutanModal()">
+            + Tambah Sambutan
+        </button>
+
+    </div>
+
+    <table class="data-table"
+           id="sambutanTable">
+
+        <thead>
+        <tr>
+            <th>Foto</th>
+            <th>Nama</th>
+            <th>Sambutan</th>
+            <th>Visi</th>
+            <th>Misi</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+<!-- ======================================================
+         SLIDER HERO
+         (TAMBAHAN: UNTUK UPLOAD GAMBAR SLIDER)
+    ====================================================== -->
+    <div class="section-header-admin"
+         style="margin-top:40px;">
+
+        <div>
+            <h3>Kelola Slider Hero</h3>
+            <p class="section-desc">
+                Upload gambar untuk background slider di halaman utama (maksimal 5 gambar)
+            </p>
+        </div>
+
+        <button class="btn-add"
+                onclick="openSliderModal()">
+            + Tambah Gambar Slider
+        </button>
+
+    </div>
+
+    <!-- Daftar Gambar Slider -->
+    <div id="sliderList" style="margin-top:20px;">
+        <!-- Akan diisi JavaScript -->
+    </div>
+
+</section>
+</section>
+
+<!-- ======================================================
+     SECTION PAKET
+====================================================== -->
+
+<section id="section-reg" class="admin-section">
+    
+    <div class="section-header-admin">
+        <div>
+            <h3>Daftar Paket</h3>
+            <p class="section-desc">
+                Kelola paket haji dan umrah
+            </p>
+        </div>
+
+        <!-- KHUSUS PAKET -->
+        <button class="btn-add"
+        onclick="openModalPaket()">
+        + Tambah Paket
+    </button>
+    </div>
+
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>Gambar</th>
+            <th>Judul Paket</th>
+            <th>Jenis</th>
+            <th>Posisi</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+
+        <tbody id="table-paket"></tbody>
+    </table>
+
+</section>
+
+<!-- ======================================================
+     SECTION INFORMASI
+====================================================== -->
+
+<section id="section-msg"class="admin-section">
+    <div class="section-header-admin">
+
+        <h3>Pesan Jamaah</h3>
+    </div>
+
+
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>Pengirim</th>
+            <th>Kategori</th>
+            <th>Pesan</th>
+        </tr>
+        </thead>
+        <tbody id="table-messages"></tbody>
+    </table>
+
+    <div class="section-header-admin"
+         style="margin-top:40px;">
+
+        <h3>Kelola FAQ</h3>
+        <button class="btn-add"
+                onclick="openModal('adminModal')">
+            + Tambah FAQ</button>
+    </div>
+
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>Pertanyaan</th>
+            <th>Jawaban</th>
+        </tr>
+        </thead>
+        <tbody id="table-faq"></tbody>
+    </table>
+
+    <!-- ======================================================
+     VIDEO PANDUAN
+====================================================== -->
+<div class="section-header-admin"
+     style="margin-top:40px;">
+
+    <div>
+        <h3>Kelola Video Panduan</h3>
+        <p class="section-desc">
+            Input link YouTube untuk halaman panduan haji & umrah
+        </p>
+    </div>
+</div>
+
+<div class="admin-form-box" style="margin-top:20px;">
+
+    <label>Video Panduan Haji</label>
+    <textarea id="videoHaji"
+    placeholder="Masukkan link YouTube, pisahkan per baris"></textarea>
+
+    <br><br>
+
+    <label>Video Panduan Umrah</label>
+    <input type="text"
+           id="videoUmrah"
+           placeholder="https://www.youtube.com/watch?v=xxxx">
+
+    <br><br>
+
+    <button class="btn-add"
+            onclick="simpanVideoPanduan()">
+        Simpan Video
+    </button>
+
+</div>
+</section>
+</main>
+</div>
+
+<!-- ======================================================
+     MODAL ADMIN
+====================================================== -->
+
+<div id="adminModal"
+     class="modal">
+
+<div class="modal-content admin-form-box">
+
+<span class="close"
+      onclick="closeModal('adminModal')">
+
+&times;
+
+</span>
+
+<h3>Form Input</h3>
+
+<form id="mainForm">
+
+<div id="formInputs">
+
+<input type="file" id="inputFoto">
+
+<input type="text"
+       id="inputJudul"
+       placeholder="Judul">
+
+<textarea id="inputIsi"></textarea>
+<textarea id="inputFasilitas"
+placeholder="List fasilitas (pisahkan dengan enter)">
+</textarea>
+
+
+<select id="inputJenis">
+<option value="terkini">Berita Terkini</option>
+<option value="lainnya">Berita Lainnya</option>
+</select>
+
+<input type="text"
+       id="inputYoutube"
+       placeholder="Link Youtube">
+
+<select id="inputPosisi">
+<option value="1">Kotak 1</option>
+<option value="2">Kotak 2</option>
+<option value="3">Kotak 3</option>
+<option value="4">Kotak 4</option>
+</select>
+
+</div>
+
+<button type="submit"
+        class="modal-btn">Simpan</button>
+
+</form>
+
+</div>
+</div>
+
+
+<!-- ======================================================
+     MODAL SAMBUTAN
+====================================================== -->
+
+<div id="sambutanModal"
+     class="modal">
+
+<div class="modal-content admin-form-box">
+
+<span class="close"
+      onclick="closeSambutanModal()">
+
+&times;
+</span>
+
+<h3>Form Sambutan</h3>
+
+<input type="text"
+id="sambutanNama"
+placeholder="Nama Kepala">
+
+<textarea id="sambutanIsi"
+placeholder="Kata Sambutan"></textarea>
+
+<textarea id="sambutanVisi"
+placeholder="Visi"></textarea>
+
+<textarea id="sambutanMisi"
+placeholder="Misi (pisahkan dengan enter)"></textarea>
+
+<input type="file"
+id="sambutanFotoInput">
+
+<button onclick="saveSambutan()"
+class="btn-add">Simpan</button>
+</div>
+</div>
+
+<!-- ======================================================
+     MODAL SLIDER
+====================================================== -->
+<div id="sliderModal" class="modal">
+  <div class="modal-content admin-form-box">
+    <span class="close" onclick="closeSliderModal()">&times;</span>
+    
+    <h3>Tambah Gambar Slider</h3>
+    
+    <form id="sliderForm">
+      <!-- Upload Gambar -->
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: 500;">Pilih Gambar:</label>
+        <input type="file" id="sliderImageInput" accept="image/*" required>
+        <p style="font-size:12px; color:#666; margin-top:5px;">
+          Rekomendasi ukuran: 1920 x 1080 pixel (landscape) | Maksimal 2MB
+        </p>
+      </div>
+      
+      <!-- Pilihan Urutan -->
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; font-weight: 500;">Urutan Slide:</label>
+        <select id="sliderPosition" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+          <option value="1">Slide 1 (Pertama)</option>
+          <option value="2">Slide 2</option>
+          <option value="3">Slide 3</option>
+          <option value="4">Slide 4</option>
+          <option value="5">Slide 5</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="modal-btn">Upload Gambar</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- ======================================================
+     MODAL KHUSUS PAKET
+====================================================== -->
+
+<div id="paketModal" class="modal">
+
+<div class="modal-content admin-form-box">
+
+<span class="close"
+      onclick="closeModal('paketModal')">
+
+&times;
+
+</span>
+
+<h3>Form Paket</h3>
+
+<form id="formPaket">
+
+<div id="formInputs">
+
+<!-- FOTO -->
+<input type="file"
+       id="paketFoto"
+       accept="image/*">
+
+<!-- JUDUL -->
+<input type="text"
+       id="paketJudul"
+       placeholder="Judul Paket">
+
+<!-- JENIS -->
+<select id="paketJenis">
+<option value="">Pilih Jenis Paket</option>
+<option value="haji">Paket Haji</option>
+<option value="umrah">Paket Umrah</option>
+</select>
+
+<!-- PENJELASAN -->
+<textarea id="paketIsi"
+placeholder="Penjelasan Paket"></textarea>
+
+<!-- FASILITAS -->
+<textarea id="paketFasilitas"
+placeholder="List fasilitas (pisahkan dengan enter)"></textarea>
+
+<!-- POSISI -->
+<select id="paketPosisi">
+<option value="1">Kotak 1</option>
+<option value="2">Kotak 2</option>
+</select>
+
+<button type="submit"
+        class="modal-btn">
+    Simpan
+</button>
+
+</div>
+</form>
+
+</div>
+</div>
+
+
+</body>
+</html>

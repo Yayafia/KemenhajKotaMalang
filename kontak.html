@@ -4,19 +4,35 @@
   <meta charset="UTF-8" />
   <title>Pusat Bantuan & Kontak | SISKOHAT</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js" defer></script>
+
 </head>
 <body>
 
 <!-- ================= NAVBAR ================= -->
 <header class="navbar">
   <div class="container nav-wrapper">
-    <div class="logo">
-      <strong>SISKOHAT</strong>
+    <!-- LOGO + NAMA -->
+    <div class="nav-logo">
+      <img src="images/logo-kemenhaj.png" alt="Logo Kemenhaj">
+
+      <div>
+        <h2>Kementerian Haji dan Umrah Kota Malang</h2>
+        <span>Republik Indonesia</span>
+      </div>
     </div>
+
+
     <nav>
       <a href="index.html">Beranda</a>
-      <a href="layanan.html">Layanan</a>
-      <a href="panduan.html">Panduan</a>
+      <!-- DROPDOWN PANDUAN (KLIK) -->
+       <div class="nav-dropdown">
+        <a href="#" id="btnPanduan">Panduan ▾</a>
+        <div class="dropdown-menu" id="menuPanduan">
+          <a href="panduanhaji.html">Panduan Haji</a>
+          <a href="panduanumrah.html">Panduan Umrah</a>
+    </div>
+  </div>
       <a href="paket.html">Paket</a>
       <a href="kontak.html" class="active">Kontak</a>
     </nav>
@@ -113,19 +129,71 @@
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="container footer-grid">
-    <div>
-      <strong>SISKOHAT</strong>
-      <p>Sistem Informasi dan Komputerisasi Haji Terpadu</p>
+
+  <div class="container footer-grid-new">
+
+    <!-- PROFIL -->
+    <div class="footer-col">
+      <h3>Kementerian Haji dan Umrah</h3>
+      <p>Kota Malang</p>
+      <p>Republik Indonesia</p>
+
+      <!-- SOSIAL MEDIA -->
+      <div class="footer-social">
+        <a href="https://instagram.com/akunmu" target="_blank">
+          <img src="images/ig.png" alt="Instagram">
+        </a>
+
+        <a href="https://facebook.com/akunmu" target="_blank">
+          <img src="images/fb.png" alt="Facebook">
+        </a>
+      </div>
     </div>
-    <div>
-      <p>Hotline: 1500425</p>
-      <p>Email: haji@kemenag.go.id</p>
+
+
+    <!-- ALAMAT -->
+    <div class="footer-col">
+      <h4>Alamat</h4>
+      <p>
+        Jl. Raden Panji Suroso No.2, Polowijen, Kec. Blimbing, Kota Malang<br>
+        Jawa Timur 65100
+      </p>
     </div>
+
+
+    <!-- KONTAK -->
+    <div class="footer-col">
+      <h4>Hubungi Kami</h4>
+      <p>Telp: (0341) 123456</p>
+      <p>Email: info@kemenhajmalang.go.id</p>
+    </div>
+
+
+    <!-- MENU -->
+    <div class="footer-col">
+      <h4>Platform</h4>
+
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="#berita">Berita</a></li>
+        <li><a href="#paketHaji">Layanan</a></li>
+        <li><a href="#">Data & Informasi</a></li>
+        <li><a href="#">LK & PIH</a></li>
+      </ul>
+    </div>
+
   </div>
+
+
+  <!-- COPYRIGHT -->
+  <div class="footer-bottom">
+    © Copyright 2026 Kementerian Haji dan Umrah Kota Malang
+  </div>
+
 </footer>
+
 
 </body>
 </html>

@@ -12,22 +12,50 @@
 <!-- HEADER -->
 <header class="navbar">
   <div class="container nav-wrapper">
-    <div class="logo">
-      <h2>Kementerian Haji dan Umrah Kota Malang</h2>
-      <span>Republik Indonesia</span>
+
+    <!-- LOGO + NAMA -->
+    <div class="nav-logo">
+      <img src="images/logo-kemenhaj.png" alt="Logo Kemenhaj">
+
+      <div>
+        <h2>Kementerian Haji dan Umrah Kota Malang</h2>
+        <span>Republik Indonesia</span>
+      </div>
     </div>
+
+    <!-- MENU -->
     <nav>
-      <a href="index.html" class="active">Beranda</a>
-      <a href="#">Panduan</a>
-      <a href="#">Berita</a>
-      <a href="#">Paket</a>
-      <a href="#">Kontak</a>
-    </nav>
+      <a href="index.html">Beranda</a>
+      <!-- DROPDOWN PANDUAN -->
+      <div class="nav-dropdown">
+        <a href="#" id="btnPanduan">Panduan ▾</a>
+
+        <div class="dropdown-menu" id="menuPanduan">
+          <a href="panduanhaji.html">Panduan Haji</a>
+          <a href="panduanumrah.html">Panduan Umrah</a>
+        </div>
+      </div>
+  <!-- NAVBAR SCROLL -->
+  <a href="#" id="navBerita">Berita</a>
+  <a href="#" id="navPaket">Paket</a>
+  <a href="kontak.html">Kontak</a>
+</nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<!-- HERO - SLIDER BACKGROUND -->
+<!-- HERO - SLIDER BACKGROUND -->
+<section class="hero hero-slider" id="heroSlider">
+  <!-- Slider Images akan diisi oleh JavaScript (kosongkan dulu) -->
+  <div class="slider-container">
+    <!-- Akan diisi JavaScript -->
+  </div>
+  
+  <!-- Overlay gelap agar tulisan tetap terbaca -->
+  <div class="hero-overlay"></div>
+  
+  <!-- Konten Hero (tetap di atas slider) -->
   <div class="container hero-content">
     <h1>Sistem Informasi Pelayanan<br>Jamaah Haji dan Umrah</h1>
     <p>
@@ -35,37 +63,96 @@
       dan pengelolaan data jamaah haji dan umrah secara terintegrasi.
     </p>
 
+    <!-- Kotak transparan -->
     <div class="hero-cards">
-      <div class="card">
+      <div class="card transparent-card">
         <h4>Informasi Haji</h4>
         <p>Persyaratan dan jadwal</p>
       </div>
-      <div class="card">
+      <div class="card transparent-card">
         <h4>Informasi Umrah</h4>
         <p>Paket dan ketentuan</p>
       </div>
-      <div class="card">
-        <h4>Registrasi Jamaah</h4>
-        <p>Pendaftaran online melalui aplikasi satu haji</p>
+      <div class="card transparent-card">
+        <h4>Informasi Acara</h4>
+        <p>Acara Kemenhaj Kota Malang</p>
       </div>
     </div>
   </div>
+  
+  <!-- Tombol navigasi slider -->
+  <button class="slider-btn prev">❮</button>
+  <button class="slider-btn next">❯</button>
+  
+  <!-- Dots indicator -->
+  <div class="slider-dots">
+    <!-- Akan diisi JavaScript -->
+  </div>
 </section>
+
+
+<!-- ================= SAMBUTAN KEPALA ================= -->
+<section class="section sambutan" id="sambutanSection">
+  <div class="container">
+
+    <div class="sambutan-grid">
+
+      <!-- FOTO -->
+      <div class="sambutan-foto">
+
+        <!-- Foto dari Admin -->
+        <img 
+          id="sambutanFoto" 
+          src="images/logo-kemenhaj.png" 
+          alt="Kepala Kemenhaj">
+
+        <!-- Nama & Jabatan -->
+        <div class="sambutan-overlay">
+          <h4 id="sambutanNama">Nama Kepala</h4>
+          <p id="sambutanJabatan">Kepala Kementrian Haji Kota Malang</p>
+        </div>
+
+      </div>
+
+
+      <!-- TEKS -->
+      <div class="sambutan-text">
+
+        <h2 id="sambutanJudul">Sambutan Kepala</h2>
+
+        <p id="sambutanIsi">
+          Sambutan belum tersedia.
+        </p>
+
+        <h3>Visi</h3>
+        <p id="sambutanVisi">
+          Visi belum diatur.
+        </p>
+
+        <h3>Misi</h3>
+        <ul id="sambutanMisi">
+          <li>Misi belum diatur.</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
 
 <!-- BERITA TERKINI -->
 <section class="section" id="berita">
   <div class="container">
-
     <div class="section-header">
       <h2>Berita Terkini</h2>
     </div>
 
     <div class="news-layout">
-
-      <!-- BERITA UTAMA (LANGSUNG KE DETAIL) -->
-      <div class="news-main news-direct"
-        data-judul="Penyesuaian Biaya Haji Tahun 1446 H / 2025 M"
-        data-isi="Pemerintah menetapkan penyesuaian biaya penyelenggaraan ibadah haji tahun 1446 H / 2025 M.">
+      <!-- BERITA UTAMA (KOTAK BESAR) - KHUSUS VIDEO -->
+      <div class="news-main">
         <img src="assets/images/berita-utama.jpg">
         <div class="news-overlay">
           <span class="badge">Pengumuman</span>
@@ -73,83 +160,31 @@
         </div>
       </div>
 
-      <!-- BERITA SAMPING (LANGSUNG KE DETAIL) -->
+      <!-- BERITA SAMPING (3 KOTAK KECIL) - AKAN DIISI JAVASCRIPT -->
       <div class="news-side">
-        <div class="news-card news-direct"
-          data-judul="Persiapan Manasik Haji Nasional"
-          data-isi="Kementerian Haji dan Umrah mempersiapkan manasik nasional.">
-          <span class="badge small">Info</span>
-          <h4>Persiapan Manasik Haji Nasional</h4>
-          <p>20 Januari 2026</p>
-        </div>
-
-        <div class="news-card news-direct"
-          data-judul="Pembukaan Pendaftaran Umrah Resmi"
-          data-isi="Pendaftaran umrah resmi telah dibuka melalui sistem nasional.">
-          <span class="badge small">Umrah</span>
-          <h4>Pembukaan Pendaftaran Umrah Resmi</h4>
-          <p>18 Januari 2026</p>
-        </div>
-
-        <div class="news-card news-direct"
-          data-judul="Peningkatan Sistem SISKOHAT"
-          data-isi="Peningkatan sistem untuk layanan jamaah haji.">
-          <span class="badge small">Layanan</span>
-          <h4>Peningkatan Sistem SISKOHAT</h4>
-          <p>15 Januari 2026</p>
-        </div>
+        <!-- Akan diisi oleh JavaScript -->
       </div>
     </div>
 
-    <!-- BERITA LAINNYA (PAKAI POPUP) -->
-    <div class="berita-lain-header">
+    <!-- BERITA LAINNYA -->
+    <div class="berita-lain-header" id="beritaLainnya">
       <h3>Berita Lainnya</h3>
       <p>Informasi resmi lainnya seputar penyelenggaraan haji dan umrah</p>
     </div>
 
-    <div class="berita-grid">
-      <div class="berita-card news-popup"
-        data-judul="Penyesuaian Biaya Haji 2025"
-        data-isi="Pemerintah menetapkan penyesuaian biaya penyelenggaraan ibadah haji.">
-        <div class="berita-image">
-          <img src="assets/images/berita-1.jpg">
-          <span class="badge">Pengumuman</span>
-        </div>
-        <div class="berita-content">
-          <h3>Penyesuaian Biaya Haji 2025</h3>
-          <p>Pemerintah menetapkan penyesuaian biaya penyelenggaraan ibadah haji.</p>
-        </div>
-      </div>
-
-      <div class="berita-card news-popup"
-        data-judul="Jadwal Manasik Haji Nasional"
-        data-isi="Manasik haji nasional dilaksanakan bertahap.">
-        <div class="berita-image">
-          <img src="assets/images/berita-2.jpg">
-          <span class="badge">Manasik</span>
-        </div>
-        <div class="berita-content">
-          <h3>Jadwal Manasik Haji Nasional</h3>
-          <p>Manasik haji nasional dilaksanakan bertahap.</p>
-        </div>
-      </div>
-
-      <div class="berita-card news-popup"
-        data-judul="Pendaftaran Umrah Resmi Dibuka"
-        data-isi="Pendaftaran umrah melalui sistem resmi SISKOHAT.">
-        <div class="berita-image">
-          <img src="assets/images/berita-3.jpg">
-          <span class="badge">Umrah</span>
-        </div>
-        <div class="berita-content">
-          <h3>Pendaftaran Umrah Resmi Dibuka</h3>
-          <p>Pendaftaran umrah melalui sistem resmi SISKOHAT.</p>
-        </div>
-      </div>
+    <div class="berita-grid" id="beritaGrid">
+      <!-- Akan diisi oleh JavaScript -->
     </div>
 
+    <!-- TOMBOL PANAH -->
+    <div class="berita-toggle">
+      <button id="toggleBerita">
+        <span id="iconToggle">⬇</span> Berita Lainnya
+      </button>
+    </div>
   </div>
 </section>
+
 
 <!-- MODAL -->
 <div class="modal" id="modalBerita">
@@ -167,63 +202,186 @@
 
 
 <!-- ================= PAKET HAJI ================= -->
-<section class="section">
+<section class="section" id="paketHaji">
   <div class="container center">
+
     <h2>Paket Haji</h2>
     <p>Pilihan layanan resmi penyelenggaraan ibadah haji.</p>
 
     <div class="package-grid">
+
+      <!-- Haji Reguler -->
       <div class="package-card">
-        <h3>Haji Reguler</h3>
-        <p>Pendaftaran melalui Kemenag dengan masa tunggu sesuai provinsi.</p>
-        <button>Pelajari Alur</button>
+
+        <!-- KHUSUS GAMBAR -->
+        <div class="package-image">
+          <img id="homeHajiImage"
+          src="assets/images/default-haji.jpg"
+          alt="Paket Haji">
+        </div>
+
+        <h3 id="homeHajiTitle">
+          Haji Reguler
+        </h3>
+
+        <p id="homeHajiDesc">
+          Pendaftaran melalui Kemenag dengan masa tunggu sesuai provinsi.
+        </p>
+
+        <button class="btn-paket"
+        data-paket="Haji Reguler"
+        data-deskripsi="Pendaftaran melalui Kemenag dengan masa tunggu sesuai provinsi."
+        data-target="detailpakethaji.html">
+          Lihat Detail
+        </button>
+
       </div>
 
+      <!-- Haji Plus -->
       <div class="package-card highlight">
+
         <h3>Haji Plus</h3>
-        <p>Layanan PIHK dengan masa tunggu lebih singkat dan fasilitas tambahan.</p>
-        <button>Lihat Ketentuan</button>
+
+        <p>
+          Layanan PIHK dengan masa tunggu lebih singkat dan fasilitas tambahan.
+        </p>
+
+        <button class="btn-paket"
+        data-paket="Haji Plus"
+        data-deskripsi="Layanan PIHK dengan masa tunggu lebih singkat dan fasilitas tambahan."
+        data-target="detailpakethaji.html">
+          Lihat Detail
+        </button>
+
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- ================= PAKET UMRAH ================= -->
-<section class="section light">
+<section class="section light" id="paketUmrah">
   <div class="container center">
+
     <h2>Paket Umrah</h2>
     <p>Pilihan paket ibadah umrah resmi sepanjang tahun.</p>
 
     <div class="package-grid">
+
+      <!-- Umrah Reguler -->
       <div class="package-card">
-        <h3>Umrah Reguler</h3>
-        <p>Paket umrah standar dengan durasi 9–12 hari.</p>
-        <button>Lihat Detail</button>
+
+        <!-- KHUSUS GAMBAR -->
+        <div class="package-image">
+          <img id="homeUmrahImage"
+          src="assets/images/default-umrah.jpg"
+          alt="Paket Umrah">
+        </div>
+
+        <h3 id="homeUmrahTitle">
+          Umrah Reguler
+        </h3>
+
+        <p id="homeUmrahDesc">
+          Paket umrah standar dengan durasi 9–12 hari.
+        </p>
+
+        <button class="btn-paket"
+        data-paket="Umrah Reguler"
+        data-deskripsi="Paket umrah standar dengan durasi 9–12 hari."
+        data-target="detailpaketumrah.html">
+          Lihat Detail
+        </button>
+
       </div>
 
+      <!-- Umrah Plus -->
       <div class="package-card highlight">
+
         <h3>Umrah Plus</h3>
-        <p>Umrah dengan tambahan wisata religi dan fasilitas premium.</p>
-        <button>Lihat Detail</button>
+
+        <p>
+          Umrah dengan tambahan wisata religi dan fasilitas premium.
+        </p>
+
+        <button class="btn-paket"
+        data-paket="Umrah Plus"
+        data-deskripsi="Umrah dengan tambahan wisata religi dan fasilitas premium."
+        data-target="detailpaketumrah.html">
+          Lihat Detail
+        </button>
+
       </div>
+
     </div>
   </div>
 </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <h4>Kementerian Haji dan Umrah Kota Malang</h4>
-        <p>Pelayanan terbaik untuk jamaah Indonesia.</p>
-      </div>
-      <div>
-        <h4>Kontak</h4>
-        <p>Email: info@kemenhaj.go.id</p>
-        <p>Telepon: (021) 123456</p>
+<footer class="footer">
+
+  <div class="container footer-grid-new">
+
+    <!-- PROFIL -->
+    <div class="footer-col">
+      <h3>Kementerian Haji dan Umrah</h3>
+      <p>Kota Malang</p>
+      <p>Republik Indonesia</p>
+
+      <!-- SOSIAL MEDIA -->
+      <div class="footer-social">
+        <a href="https://instagram.com/akunmu" target="_blank">
+          <img src="images/ig.png" alt="Instagram">
+        </a>
+
+        <a href="https://facebook.com/akunmu" target="_blank">
+          <img src="images/fb.png" alt="Facebook">
+        </a>
       </div>
     </div>
-  </footer>
+
+
+    <!-- ALAMAT -->
+    <div class="footer-col">
+      <h4>Alamat</h4>
+      <p>
+        Jl. Raden Panji Suroso No.2, Polowijen, Kec. Blimbing, Kota Malang<br>
+        Jawa Timur 65100
+      </p>
+    </div>
+
+
+    <!-- KONTAK -->
+    <div class="footer-col">
+      <h4>Hubungi Kami</h4>
+      <p>Telp: (0341) 123456</p>
+      <p>Email: info@kemenhajmalang.go.id</p>
+    </div>
+
+
+    <!-- MENU -->
+    <div class="footer-col">
+      <h4>Platform</h4>
+
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="#berita">Berita</a></li>
+        <li><a href="#paketHaji">Layanan</a></li>
+        <li><a href="#">Data & Informasi</a></li>
+        <li><a href="#">LK & PIH</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <!-- COPYRIGHT -->
+  <div class="footer-bottom">
+    © Copyright 2026 Kementerian Haji dan Umrah Kota Malang
+  </div>
+
+</footer>
+
 
 </body>
 </html>
