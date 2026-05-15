@@ -19,6 +19,18 @@ if (closeModal) {
 }
 
 /* ======================================================
+   TAMBAHAN CLOSE MODAL SAAT KLIK DI LUAR POPUP
+====================================================== */
+if (modal) {
+    modal.addEventListener("click", (e) => {
+        // Jika klik area luar modal-content
+        if (e.target === modal) {
+            modal.classList.remove("show");
+        }
+    });
+}
+
+/* ======================================================
    HERO SLIDER - DENGAN GAMBAR DARI LOCALSTORAGE
 ====================================================== */
 // Key untuk menyimpan gambar slider
@@ -564,11 +576,30 @@ if (detailJudul && detailIsi && detailImage && detailTanggal) {
 ====================================================== */
 document.querySelectorAll(".btn-paket").forEach(btn => {
   btn.addEventListener("click", () => {
-    localStorage.setItem("namaPaket", btn.dataset.paket);
-    localStorage.setItem("deskripsiPaket", btn.dataset.deskripsi);
-    localStorage.setItem("gambarPaket", btn.dataset.gambar);
 
-    window.location.href = btn.dataset.target;
+    localStorage.setItem(
+      "namaPaket",
+      btn.dataset.paket
+    );
+
+    localStorage.setItem(
+      "deskripsiPaket",
+      btn.dataset.deskripsi
+    );
+
+    localStorage.setItem(
+      "gambarPaket",
+      btn.dataset.gambar
+    );
+
+    localStorage.setItem(
+      "fasilitasPaket",
+      btn.dataset.fasilitas || ""
+    );
+
+    window.location.href =
+      btn.dataset.target;
+
   });
 });
 
@@ -594,20 +625,92 @@ if (btnPanduan && menuPanduan) {
 /* ======================================================
    DETAIL PAKET (HAJI & UMRAH)
 ====================================================== */
-const paketJudul = document.getElementById("paketJudul");
-const paketDeskripsi = document.getElementById("paketDeskripsi");
-const paketImage = document.getElementById("paketImage");
 
-if (paketJudul && paketDeskripsi && paketImage) {
+const paketJudul =
+document.getElementById("paketJudul");
+
+const paketDeskripsi =
+document.getElementById("paketDeskripsi");
+
+const paketImage =
+document.getElementById("paketImage");
+
+const listFasilitas =
+document.getElementById("listFasilitas");
+
+if (
+  paketJudul &&
+  paketDeskripsi &&
+  paketImage
+) {
 
   paketJudul.innerText =
-    localStorage.getItem("namaPaket") || "Detail Paket";
+    localStorage.getItem("namaPaket")
+    || "Detail Paket";
 
   paketDeskripsi.innerText =
-    localStorage.getItem("deskripsiPaket") || "-";
+    localStorage.getItem("deskripsiPaket")
+    || "-";
 
   paketImage.src =
-    localStorage.getItem("gambarPaket") || "assets/images/default.jpg";
+    localStorage.getItem("gambarPaket")
+    || "assets/images/default.jpg";
+
+  /* =========================================
+     LOAD FASILITAS
+  ========================================= */
+
+  const fasilitas =
+    localStorage.getItem("fasilitasPaket") || "";
+
+  if (listFasilitas) {
+
+    listFasilitas.innerHTML = "";
+
+    if (fasilitas) {
+
+      let dataFasilitas = [];
+
+      // Jika pakai enter
+      if (fasilitas.includes("\n")) {
+
+        dataFasilitas =
+          fasilitas.split("\n");
+
+      }
+
+      // Jika pakai koma
+      else {
+
+        dataFasilitas =
+          fasilitas.split(",");
+
+      }
+
+      dataFasilitas.forEach(item => {
+
+        if (item.trim() !== "") {
+
+          listFasilitas.innerHTML += `
+            <li>${item.trim()}</li>
+          `;
+
+        }
+
+      });
+
+    }
+
+    else {
+
+      listFasilitas.innerHTML = `
+        <li>Fasilitas belum tersedia.</li>
+      `;
+
+    }
+
+  }
+
 }
 
 /* ======================================================
@@ -911,137 +1014,164 @@ function loadPaketHome() {
   const data =
     JSON.parse(localStorage.getItem("dataPaketKemenhaj")) || [];
 
-  // Ambil paket berdasarkan jenis
-  const paketHaji =
-    data.find(item =>
-      item.jenis === "haji"
-    );
-
-  const paketUmrah =
-    data.find(item =>
-      item.jenis === "umrah"
-    );
-
   /* =========================================
      ELEMENT HOME HAJI
   ========================================= */
-  const hajiCard =
-    document.querySelector(".paket-haji");
 
-  const hajiTitle =
-    document.getElementById("homeHajiTitle");
+  const paketCards =
+    document.querySelectorAll("#paketHaji .package-card");
 
-  const hajiDesc =
-    document.getElementById("homeHajiDesc");
-
-  const btnHaji =
-    document.querySelector("[data-target='detailpakethaji.html']");
+  const hajiCard1 = paketCards[0];
+  const hajiCard2 = paketCards[1];
 
   /* =========================================
      ELEMENT HOME UMRAH
   ========================================= */
-  const umrahCard =
-    document.querySelector(".paket-umrah");
 
-  const umrahTitle =
-    document.getElementById("homeUmrahTitle");
+  const paketUmrahCards =
+    document.querySelectorAll("#paketUmrah .package-card");
 
-  const umrahDesc =
-    document.getElementById("homeUmrahDesc");
-
-  const btnUmrah =
-    document.querySelector("[data-target='detailpaketumrah.html']");
+  const umrahCard1 = paketUmrahCards[0];
+  const umrahCard2 = paketUmrahCards[1];
 
   /* =========================================
-     LOAD HAJI
+     FILTER DATA HAJI
   ========================================= */
-  if (paketHaji) {
 
-    // GANTI JUDUL HOME
-    if (hajiTitle) {
-      hajiTitle.innerText = paketHaji.judul;
-    }
+  const dataHaji =
+    data.filter(item => item.jenis === "haji");
 
-    // GANTI DESKRIPSI HOME
-    if (hajiDesc) {
-      hajiDesc.innerText =
-        paketHaji.isi.substring(0, 100) + "...";
-    }
-
-    // GANTI GAMBAR CARD
-    if (hajiCard) {
-      hajiCard.style.backgroundImage =
-        `url('${paketHaji.gambar}')`;
-    }
-
-    // DATA BUTTON
-    if (btnHaji) {
-
-      btnHaji.innerText = "Lihat Detail";
-
-      btnHaji.dataset.paket =
-        paketHaji.judul;
-
-      btnHaji.dataset.deskripsi =
-        paketHaji.isi;
-
-      btnHaji.dataset.gambar =
-        paketHaji.gambar;
-
-      // SIMPAN FASILITAS
-      localStorage.setItem(
-        "fasilitasHaji",
-        paketHaji.fasilitas || ""
-      );
-    }
-  }
+  const dataUmrah =
+    data.filter(item => item.jenis === "umrah");
 
   /* =========================================
-     LOAD UMRAH
+     RENDER HAJI
   ========================================= */
-  if (paketUmrah) {
 
-    // GANTI JUDUL HOME
-    if (umrahTitle) {
-      umrahTitle.innerText = paketUmrah.judul;
+  dataHaji.forEach(item => {
+
+    const posisi =
+      item.posisi || "1";
+
+    const targetCard =
+      posisi === "2"
+        ? hajiCard2
+        : hajiCard1;
+
+    if (!targetCard) return;
+
+    const title =
+      targetCard.querySelector("h3");
+
+    const desc =
+      targetCard.querySelector("p");
+
+    const button =
+      targetCard.querySelector(".btn-paket");
+
+    // JANGAN TAMPILKAN GAMBAR DI HOME
+    const image =
+      targetCard.querySelector("img");
+
+    if (image) {
+      image.style.display = "none";
     }
 
-    // GANTI DESKRIPSI HOME
-    if (umrahDesc) {
-      umrahDesc.innerText =
-        paketUmrah.isi.substring(0, 100) + "...";
+    if (title) {
+      title.innerText = item.judul;
     }
 
-    // GANTI GAMBAR CARD
-    if (umrahCard) {
-      umrahCard.style.backgroundImage =
-        `url('${paketUmrah.gambar}')`;
+    if (desc) {
+      desc.innerText =
+        item.isi.substring(0, 100) + "...";
     }
 
-    // DATA BUTTON
-    if (btnUmrah) {
+    if (button) {
 
-      btnUmrah.innerText = "Lihat Detail";
+      button.innerText = "Lihat Detail";
 
-      btnUmrah.dataset.paket =
-        paketUmrah.judul;
+      button.dataset.paket =
+        item.judul;
 
-      btnUmrah.dataset.deskripsi =
-        paketUmrah.isi;
+      button.dataset.deskripsi =
+        item.isi;
 
-      btnUmrah.dataset.gambar =
-        paketUmrah.gambar;
+      button.dataset.gambar =
+        item.gambar;
 
-      // SIMPAN FASILITAS
-      localStorage.setItem(
-        "fasilitasUmrah",
-        paketUmrah.fasilitas || ""
-      );
+      button.dataset.fasilitas =
+        item.fasilitas || "";
+
     }
-  }
+
+  });
+
+  /* =========================================
+     RENDER UMRAH
+  ========================================= */
+
+  dataUmrah.forEach(item => {
+
+    const posisi =
+      item.posisi || "1";
+
+    const targetCard =
+      posisi === "2"
+        ? umrahCard2
+        : umrahCard1;
+
+    if (!targetCard) return;
+
+    const title =
+      targetCard.querySelector("h3");
+
+    const desc =
+      targetCard.querySelector("p");
+
+    const button =
+      targetCard.querySelector(".btn-paket");
+
+    // JANGAN TAMPILKAN GAMBAR DI HOME
+    const image =
+      targetCard.querySelector("img");
+
+    if (image) {
+      image.style.display = "none";
+    }
+
+    if (title) {
+      title.innerText = item.judul;
+    }
+
+    if (desc) {
+      desc.innerText =
+        item.isi.substring(0, 100) + "...";
+    }
+
+    if (button) {
+
+      button.innerText = "Lihat Detail";
+
+      button.dataset.paket =
+        item.judul;
+
+      button.dataset.deskripsi =
+        item.isi;
+
+      button.dataset.gambar =
+        item.gambar;
+
+      button.dataset.fasilitas =
+        item.fasilitas || "";
+
+    }
+
+  });
+
 }
 
 loadPaketHome();
+
 
 
 /* ======================================================
@@ -1162,6 +1292,7 @@ function prevPanduanVideo() {
 
 renderSliderPanduan();
 
+
 /* ================= VIDEO UMRAH ================= */
 const iframeUmrah =
   document.getElementById("iframeUmrah");
@@ -1179,4 +1310,91 @@ if (iframeUmrah) {
     iframeUmrah.src =
       `https://www.youtube.com/embed/${idVideo}?autoplay=1&mute=1&loop=1&playlist=${idVideo}`;
   }
+}
+
+
+/* ======================================================
+   PENGADUAN JEMAAH
+====================================================== */
+
+const STORAGE_PENGADUAN = "dataPengaduanJamaah";
+
+function getPengaduan() {
+  return JSON.parse(localStorage.getItem(STORAGE_PENGADUAN)) || [];
+}
+
+function savePengaduan(data) {
+  localStorage.setItem(STORAGE_PENGADUAN, JSON.stringify(data));
+}
+
+function renderPengaduan() {
+
+  const container = document.getElementById("listPengaduan");
+
+  if (!container) return;
+
+  const data = getPengaduan();
+
+  container.innerHTML = "";
+
+  if (data.length === 0) {
+    container.innerHTML = `
+      <div class="syarat-card">
+        <h4>Belum Ada Pengaduan</h4>
+        <p>Pengaduan pengguna akan muncul di sini.</p>
+      </div>
+    `;
+
+    return;
+  }
+
+  data.reverse().forEach(item => {
+
+    container.innerHTML += `
+      <div class="syarat-card" style="margin-bottom:20px;">
+        <h4>${item.nama}</h4>
+        <p><strong>Kategori:</strong> ${item.kategori}</p>
+        <p>${item.pesan}</p>
+      </div>
+    `;
+
+  });
+}
+
+const formPengaduan = document.getElementById("formPengaduan");
+
+if (formPengaduan) {
+
+  renderPengaduan();
+
+  formPengaduan.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const nama =
+      document.getElementById("namaPengadu").value;
+
+    const kategori =
+      document.getElementById("kategoriPengaduan").value;
+
+    const pesan =
+      document.getElementById("detailPengaduan").value;
+
+    const semuaPengaduan = getPengaduan();
+
+    semuaPengaduan.push({
+      nama,
+      kategori,
+      pesan
+    });
+
+    savePengaduan(semuaPengaduan);
+
+    alert("Pengaduan berhasil dikirim!");
+
+    formPengaduan.reset();
+
+    renderPengaduan();
+
+  });
 }

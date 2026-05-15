@@ -33,7 +33,8 @@
           <a href="panduanumrah.html">Panduan Umrah</a>
     </div>
   </div>
-      <a href="paket.html">Paket</a>
+      <a href="index.html#berita">Berita</a>
+      <a href="index.html#paketHaji">Paket</a>
       <a href="kontak.html" class="active">Kontak</a>
     </nav>
   </div>
@@ -63,70 +64,74 @@
     <div class="contact-card">
       <h4>Alamat Kantor</h4>
       <p>
-        Jl. Lapangan Banteng Barat No.3–4, Jakarta<br>
-        Pusat DKI Jakarta 10710
+        Jl. Raden Panji Suroso No.2, Polowijen, Kec. Blimbing, Kota Malang<br>
+        Jawa Timur 65100
       </p>
     </div>
 
     <div class="contact-card">
       <h4>Email Layanan</h4>
-      <p>info@kemenag.go.id<br>haji@kemenag.go.id</p>
+      <p>kemenhajkotamalang.go.id<br>kemenhajkotamalang.go.id</p>
     </div>
 
   </div>
 </section>
 
-<!-- ================= LOKASI & FORM ================= -->
+<!-- ================= FORM PENGADUAN ================= -->
 <section class="section light">
-  <div class="container contact-grid">
+  <div class="container">
 
-    <!-- Lokasi -->
-    <div class="map-box">
-      <div class="map-placeholder">
-        <p>📍 Lokasi Kantor Pusat</p>
-        <button>Lihat di Google Maps</button>
-      </div>
-      <small>
-        Ditjen PHU Kemenag RI – Gedung Siskohat, Jakarta Pusat
-      </small>
-    </div>
+    <div class="form-box"
+         style="max-width:800px; margin:auto;">
 
-    <!-- Form Pengaduan -->
-    <div class="form-box">
       <h3>Formulir Pengaduan</h3>
-      <p>Sampaikan kendala Anda secara resmi.</p>
 
-      <form>
-        <input type="text" placeholder="Nama sesuai KTP/Paspor">
-        <input type="text" placeholder="Nomor Porsi (jika ada)">
-        <select>
-          <option>Kategori Masalah</option>
-          <option>Pendaftaran Haji</option>
-          <option>Pelunasan</option>
-          <option>Keberangkatan</option>
+      <p>
+        Sampaikan kritik, saran, maupun kendala pelayanan jamaah.
+      </p>
+
+      <form id="formPengaduan">
+
+        <input type="text"
+               id="namaPengadu"
+               placeholder="Nama Lengkap"
+               required>
+
+        <select id="kategoriPengaduan" required>
+          <option value="">Kategori Masalah</option>
+          <option value="Pendaftaran">Pendaftaran</option>
+          <option value="Pelayanan">Pelayanan</option>
+          <option value="Pembayaran">Pembayaran</option>
+          <option value="Lainnya">Lainnya</option>
         </select>
-        <textarea placeholder="Detail pesan..."></textarea>
-        <button type="submit">Kirim Pengaduan</button>
+
+        <textarea id="detailPengaduan"
+                  placeholder="Detail pesan pengaduan..."
+                  rows="6"
+                  required></textarea>
+
+        <button type="submit">
+          Kirim Pengaduan
+        </button>
+
       </form>
+
     </div>
 
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
+<!-- ================= DAFTAR PENGADUAN ================= -->
 <section class="section center">
+
   <div class="container">
-    <h2>Tanya Jawab (FAQ) Populer</h2>
 
-    <div class="faq-list">
-      <div class="faq-item">Bagaimana cek perkiraan tahun keberangkatan?</div>
-      <div class="faq-item">Apa yang harus dilakukan jika bukti pendaftaran hilang?</div>
-      <div class="faq-item">Apakah pendaftaran haji bisa dibatalkan?</div>
-      <div class="faq-item">Bagaimana prosedur via Haji Pintar?</div>
-    </div>
+    <h2>Pengaduan Jamaah</h2>
 
-    <a href="#" class="faq-link">Lihat Semua Pertanyaan →</a>
+    <div id="listPengaduan"></div>
+
   </div>
+
 </section>
 
 <!-- FOOTER -->

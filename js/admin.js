@@ -1026,3 +1026,68 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+
+/* ======================================================
+   LOAD PENGADUAN USER KE ADMIN
+====================================================== */
+
+function loadPengaduanAdmin() {
+
+  const table =
+    document.getElementById("table-messages");
+
+  if (!table) return;
+
+  const data =
+    JSON.parse(localStorage.getItem("dataPengaduanJamaah")) || [];
+
+  table.innerHTML = "";
+
+  if (data.length === 0) {
+
+    table.innerHTML = `
+      <tr>
+        <td colspan="3">Belum ada pengaduan.</td>
+      </tr>
+    `;
+
+    return;
+  }
+
+  data.reverse().forEach(item => {
+
+    table.innerHTML += `
+      <tr>
+        <td>${item.nama}</td>
+        <td>${item.kategori}</td>
+        <td>${item.pesan}</td>
+      </tr>
+    `;
+
+  });
+}
+
+loadPengaduanAdmin();
+/* ======================================================
+   UPDATE TOTAL PESAN MASUK DASHBOARD
+====================================================== */
+
+function updateTotalPesan() {
+
+    const totalPesan =
+        document.getElementById("totalPesan");
+
+    if (!totalPesan) return;
+
+    const dataPengaduan =
+        JSON.parse(
+            localStorage.getItem("dataPengaduanJamaah")
+        ) || [];
+
+    totalPesan.innerText =
+        dataPengaduan.length;
+}
+
+/* PANGGIL FUNCTION */
+updateTotalPesan();
